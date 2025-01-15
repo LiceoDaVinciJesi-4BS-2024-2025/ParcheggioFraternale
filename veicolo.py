@@ -11,42 +11,52 @@ class Veicolo:
                 if targa[5] and targa[6] in "ABCDEFGHIJKLMNOPQRSTUVWQYZ":
                     self.__targa = targa
         else:
-            raise ValueError("Impossibile")
+            raise ValueError("Targa non valida")
         if marca in marche:
             self.__marca = marca
         else:
-            raise ValueError("Impossibile")
+            raise ValueError("Marca inesistente")
         colori = ["rosso","blu","nero","grigio","bianco","verde"]
         if colore in colori:
             self.__colore = colore
         else:
-            raise ValueError("Impossibile")
+            raise ValueError("Colore inesistente")
         if cilindrata % 100 == 0:
             self.__cilindrata = cilindrata
         else:
-            raise ValueError("Impossibile")
+            raise ValueError("Cilindrata inesistente")
+        if alimentazione not in ["Benzina","Gasolio","Metano","Elettrico"]:
+            raise ValueError("Alimentazione inesistente")
+        else:
+            self.__alimetazione = alimentazione
         
-        @property
-        def targa(self):
-            return self.__targa
-        
-        @property
-        def marca(self):
-            return self.__marca
-        
-        @property
-        def modello(self):
-            return self.__modello
-        
-        @property
-        def colore(self):
-            return self.__colore
-        
-        @property
-        def cilindrata(self):
-            return self.__cilindrata
-        
-        @property
-        def alimentazione(self):
-            return self.__alimentazione
+    @property
+    def targa(self):
+        return self.__targa
+    
+    @property
+    def marca(self):
+        return self.__marca
+    
+    @property
+    def modello(self):
+        return self.__modello
+    
+    @property
+    def colore(self):
+        return self.__colore
+    
+    @property
+    def cilindrata(self):
+        return self.__cilindrata
+    
+    @property
+    def alimentazione(self):
+        return self.__alimentazione
+    
+    def __str__(self):
+        return __class__.__name__ + str(self.__dict__)
+    
+    def __repr__(self):
+        return str(self.__dict__)
 
