@@ -41,3 +41,11 @@ class Auto(Veicolo):
 if __name__ == "__main__":
     laMiaMacchina = Auto("ZZ999ZZ","Ferrari","296GTS","rosso",9999900,"Benzina",0,0)
     print(laMiaMacchina)
+    print(laMiaMacchina.targa)
+    print(laMiaMacchina.marca)
+    print(laMiaMacchina.modello)
+    print(laMiaMacchina.colore)
+    print(laMiaMacchina.cilindrata)
+    print(laMiaMacchina.alimentazione)
+    print(laMiaMacchina.passeggeri)
+    print(laMiaMacchina.kgDiMerce)
