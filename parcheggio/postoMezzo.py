@@ -7,7 +7,7 @@ class PostoMezzo:
     from veicolo import Veicolo
     import datetime
     def __init__(self,tipoVeicolo):
-        if tipoVeicolo not in ("auto","moto"):
+        if tipoVeicolo in ("auto","moto"):
             self.__tipoVeicolo = tipoVeicolo
             self.__targaMezzoParcheggiato = ""
             self.__dataTermineMezzoParcheggiato = 0
@@ -35,3 +35,10 @@ class PostoMezzo:
                 raise ValueError("Targa non valida")
             self.__dataTermineMezzoParcheggiato = dataTermineParcheggio
         return
+    
+    def __str__(self):
+        return f"Posto {self.__tipoVeicolo}, {self.__targaMezzoParcheggiato}, {self.__dataTermineMezzoParcheggiato}"
+
+if __name__ == "__main__":
+    postoAuto1 = PostoMezzo("auto")
+    print(postoAuto1)
