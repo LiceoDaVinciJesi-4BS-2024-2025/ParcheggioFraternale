@@ -17,6 +17,7 @@ class Parcheggio:
 #         else:
         self.__listaParcheggiAuto = []
         self.__listaParcheggiMoto = []
+        self.__guadagno = 0
         
         postoAutoVuoto = postoMezzo.PostoMezzo("auto")
         postoMotoVuoto = postoMezzo.PostoMezzo("moto")
@@ -32,7 +33,9 @@ class Parcheggio:
     @property
     def listaParcheggiMoto(self):
         return self.__listaParcheggiMoto
-        
+    
+    def __str__(self):
+        return __class__.__name__ + str(self.__dict__)
 
 
     def postiLiberi(self,tipoVeicolo):
@@ -41,28 +44,36 @@ class Parcheggio:
             for posto in self.__listaParcheggiAuto:
                 if posto.targaMezzoParcheggiato == "":
                     conta += 1
-            return conta
             
         elif tipoVeicolo == "moto":
             for posto in self.__listaParcheggiMoto:
                 if posto.targaMezzoParcheggiato == "":
                     conta += 1
-            return conta
         else:
             return "Non puoi parcheggiare il veicolo"
-        return
+        return conta
 
     def parcheggia(self,tipoVeicolo,targa,numeroOreSosta):
         if self.postiLiberi(tipoVeicolo) > 0:
             if tipoVeicolo == "moto":
-                return str(1.2*numeroOreSosta) + " euro"
+                self.__guadagno += 1.2*numeroOreSosta
+                for postoMoto in self.__listaParcheggiMoto:
+                    if postoMoto.èOccupato() == False:
+                        postoMoto.parcheggia(targa,numeroOreSosta)
+                        break
             elif tipoVeicolo == "auto":
-                return str(1.5*numeroOreSosta) + " euro"
+                self.__guadagno += 1.5*numeroOreSosta
+                for postoAuto in self.__listaParcheggiAuto:
+                    if postoAuto.èOccupato() == False:
+                        postoAuto.parcheggia(targa,numeroOreSosta)
+                        break
             else:
                 return "Non puoi parcheggiare il veicolo"
-                
+        return
+
 
 if __name__ == "__main__":
     mioParcheggio = Parcheggio()
     print(mioParcheggio.postiLiberi("auto"))
-    print(mioParcheggio.parcheggia("auto","SC235KD",3))
+    mioParcheggio.parcheggia("auto","SC235KD",3)
+    print(mioParcheggio.postiLiberi("auto"))
