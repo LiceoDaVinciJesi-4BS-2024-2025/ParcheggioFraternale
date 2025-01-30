@@ -12,13 +12,13 @@ class Veicolo:
                     self.__targa = targa
         else:
             raise ValueError("Targa non valida")
-        if marca in marche:
+        if marca in marche or marca == "":
             self.__marca = marca
         else:
             raise ValueError("Marca inesistente")
         self.__modello = modello
         colori = ["rosso","blu","nero","grigio","bianco","verde"]
-        if colore in colori:
+        if colore in colori or colore == "":
             self.__colore = colore
         else:
             raise ValueError("Colore inesistente")
@@ -26,7 +26,7 @@ class Veicolo:
             self.__cilindrata = cilindrata
         else:
             raise ValueError("Cilindrata inesistente")
-        if alimentazione not in ["Benzina","Gasolio","Metano","Elettrico"]:
+        if alimentazione not in ["Benzina","Gasolio","Metano","Elettrico",""]:
             raise ValueError("Alimentazione inesistente")
         self.__alimentazione = alimentazione
         
